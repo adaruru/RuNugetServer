@@ -1,0 +1,11 @@
+﻿.New2 {
+    background-color: green;
+}
+#New {
+    background-color: red;
+}
+h1 {
+}
+input::placeholder {
+    color: #f00;
+}

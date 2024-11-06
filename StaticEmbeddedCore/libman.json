@@ -1,0 +1,109 @@
+{
+  "version": "1.0",
+  "defaultProvider": "unpkg",
+  "libraries": [
+    {
+      "provider": "cdnjs",
+      "library": "jquery@3.5.1",
+      "destination": "root/lib/jquery/"
+    },
+    {
+      "library": "eonasdan-bootstrap-datetimepicker@4.17.49",
+      "destination": "root/lib/eonasdan-bootstrap-datetimepicker/",
+      "files": [
+        "build/css/bootstrap-datetimepicker.css",
+        "build/css/bootstrap-datetimepicker.min.css",
+        "build/js/bootstrap-datetimepicker.min.js",
+        "src/js/bootstrap-datetimepicker.js"
+      ]
+    },
+    {
+      "library": "bootstrap@3.4.1",
+      "destination": "root/lib/bootstrap/",
+      "files": [
+        "dist/css/bootstrap-theme.css",
+        "dist/css/bootstrap-theme.css.map",
+        "dist/css/bootstrap-theme.min.css",
+        "dist/css/bootstrap-theme.min.css.map",
+        "dist/css/bootstrap.css",
+        "dist/css/bootstrap.css.map",
+        "dist/css/bootstrap.min.css",
+        "dist/css/bootstrap.min.css.map",
+        "dist/fonts/glyphicons-halflings-regular.eot",
+        "dist/fonts/glyphicons-halflings-regular.svg",
+        "dist/fonts/glyphicons-halflings-regular.ttf",
+        "dist/fonts/glyphicons-halflings-regular.woff",
+        "dist/fonts/glyphicons-halflings-regular.woff2",
+        "dist/js/bootstrap.js",
+        "dist/js/bootstrap.min.js",
+        "dist/js/npm.js",
+        "fonts/glyphicons-halflings-regular.eot",
+        "fonts/glyphicons-halflings-regular.svg",
+        "fonts/glyphicons-halflings-regular.ttf",
+        "fonts/glyphicons-halflings-regular.woff",
+        "fonts/glyphicons-halflings-regular.woff2",
+        "js/affix.js",
+        "js/alert.js",
+        "js/button.js",
+        "js/carousel.js",
+        "js/collapse.js",
+        "js/dropdown.js",
+        "js/modal.js",
+        "js/popover.js",
+        "js/scrollspy.js",
+        "js/tab.js",
+        "js/tooltip.js",
+        "js/transition.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "modernizr@2.6.2",
+      "destination": "root/lib/modernizr/"
+    },
+    {
+      "library": "@fingerprintjs/fingerprintjs@3.3.6",
+      "destination": "root/lib/fingerprintjs/fingerprintjs/",
+      "files": [
+        "dist/fp.js",
+        "dist/fp.min.js"
+      ]
+    },
+    {
+      "library": "@microsoft/signalr@7.0.2",
+      "destination": "root/lib/microsoft/signalr/",
+      "files": [
+        "dist/browser/signalr.js",
+        "dist/browser/signalr.min.js",
+        "dist/browser/signalr.js.map",
+        "dist/browser/signalr.min.js.map"
+      ]
+    },
+    {
+      "library": "moment@2.29.4",
+      "destination": "root/lib/moment/",
+      "files": [
+        "moment.js",
+        "min/moment.min.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "dompurify@2.4.3",
+      "destination": "root/lib/dompurify/",
+      "files": [
+        "purify.min.js",
+        "purify.js"
+      ]
+    },
+    {
+      "provider": "cdnjs",
+      "library": "jquery-validate@1.11.1",
+      "destination": "root/lib/jquery-validate/",
+      "files": [
+        "jquery.validate.js",
+        "jquery.validate.min.js"
+      ]
+    }
+  ]
+}
