@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Base\" />
     <Folder Include="Extension\" />
     <Folder Include="Util\" />
   </ItemGroup>

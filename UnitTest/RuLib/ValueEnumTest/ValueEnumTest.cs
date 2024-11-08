@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace CommonTest.ITSEnumTest
+namespace UnitTest.RuLib.TextEnumTest
 {
     [TestClass()]
-    public class ITSEnumTest
+    public class ValueEnumTest
     {
         [TestInitialize]
         public void Init()
@@ -55,14 +55,14 @@ namespace CommonTest.ITSEnumTest
         }
 
         [TestMethod()]
-        public void GetDescription()
+        public void GetName()
         {
             //arrange
             string Expected = "使用者資料匯入批次作業";
 
             //act
-            var act = ProdFakeBatchAppEnum.GetDescription(HncbFakeBatchAppEnum.UserDataImport);
-            var act2 = HncbFakeBatchAppEnum.GetDescription(HncbFakeBatchAppEnum.UserDataImport);
+            var act = ProdFakeBatchAppEnum.GetName(HncbFakeBatchAppEnum.UserDataImport);
+            var act2 = HncbFakeBatchAppEnum.GetName(HncbFakeBatchAppEnum.UserDataImport);
 
             //assert
             Assert.AreEqual(Expected, act);
@@ -70,14 +70,14 @@ namespace CommonTest.ITSEnumTest
         }
 
         [TestMethod()]
-        public void GetName()
+        public void GetPorpertyName()
         {
             //arrange
             string Expected = "UserDataImport";
 
             //act
-            var act = ProdFakeBatchAppEnum.GetName(HncbFakeBatchAppEnum.UserDataImport);
-            var act2 = HncbFakeBatchAppEnum.GetName(HncbFakeBatchAppEnum.UserDataImport);
+            var act = ProdFakeBatchAppEnum.GetPorpertyName(HncbFakeBatchAppEnum.UserDataImport);
+            var act2 = HncbFakeBatchAppEnum.GetPorpertyName(HncbFakeBatchAppEnum.UserDataImport);
 
             //assert
             Assert.AreEqual(Expected, act);

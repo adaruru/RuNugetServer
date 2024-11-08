@@ -2,18 +2,18 @@
 using System.Reflection;
 using System.Web.WebPages.Html;
 
-namespace RuLib.Base;
+namespace RuLib.Services.ValueEnum;
 
 /// <summary>
-/// TextEnumBase<T>
-/// 為打包物件 static string 或 int 使其用法像 Enum，但可以繼承擴充、且可以 asign string 
+/// ValueEnumBase<T>
+/// 為打包物件 static string 或 int 使其用法像 Enum，但可以繼承擴充、且可以 asign string
 /// 基底不可直接繼承使用
 /// </summary>
-public class TextEnumBase
+public class ValueEnumBase
 {
-    public static List<SelectListItem> GetTextEnumServiceList(string value = null)
+    public static List<SelectListItem> GetValueEnumServiceList(string value = null)
     {
-        var item = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsClass && t.Namespace == "Common.TextEnum").ToList()
+        var item = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.IsClass && t.Namespace == "Common.ValueEnum").ToList()
                 .Select(t => new SelectListItem()
                 {
                     Text = t.Name,
@@ -24,7 +24,7 @@ public class TextEnumBase
         return item;
     }
 
-    internal static List<SelectListItem> GetTextEnumSelectListItems(Type type, Func<string, bool> funcValue = null)
+    internal static List<SelectListItem> GetValueEnumSelectListItems(Type type, Func<string, bool> funcValue = null)
     {
         var t1Pros = type.GetProperties(BindingFlags.Public | BindingFlags.Static);
         if (type.BaseType != null)
@@ -104,7 +104,7 @@ public class TextEnumBase
     }
 
     /// <summary>
-    /// 取得TextEnum所有內容 
+    /// 取得ValueEnum所有內容 
     /// key Enum 值 string
     /// value Enum 描述 string 中文 (DisplayAttribute Name 值)
     /// </summary>
@@ -140,7 +140,7 @@ public class TextEnumBase
     }
 
     /// <summary>
-    /// 取得TextEnum所有值
+    /// 取得ValueEnum所有值
     /// </summary>
     /// <returns></returns>
     internal static List<int> GetValues(PropertyInfo[] pros)
@@ -155,7 +155,7 @@ public class TextEnumBase
     }
 
     /// <summary>
-    /// 取得 TextEnum 所有值
+    /// 取得 ValueEnum 所有值
     /// </summary>
     /// <param name="isEnumString">是否 Enum 宣告值型別 string </param>
     /// <returns></returns>
@@ -183,10 +183,10 @@ public class TextEnumBase
     }
 
     /// <summary>
-    /// 取得 TextEnum 屬性名稱 英文
+    /// 取得 ValueEnum 屬性名稱 英文
     /// </summary>
     /// <returns></returns>
-    internal static string GetName(object value, PropertyInfo[] pros)
+    internal static string GetPorpertyName(object value, PropertyInfo[] pros)
     {
         var pro = pros?.Where(p => p.GetValue(null).ToString() == value.ToString());
         if (pro.Count() != 1 || pro == null)
@@ -198,47 +198,63 @@ public class TextEnumBase
     }
 
     /// <summary>
-    /// 取得 TextEnum 屬性顯示 中文
-    /// DisplayAttribute Name 值
+    /// 取得 ValueEnum 顯示屬性中文 DisplayAttribute Description 值
     /// </summary>
     /// <returns></returns>
     internal static string GetDescription(object value, PropertyInfo[] pros)
     {
-        var att = new object();
-        var pro = pros?.Where(p => p.GetValue(null).ToString() == value.ToString());
-        if (pro.Count() != 1 || pro == null)
+        int matchCount = 0;
+        PropertyInfo matchedProperty = null;
+        foreach (var p in pros)
         {
-            return $"{value} Enum 值重複或不存在";
-        }
-        try
-        {
-            att = pro.FirstOrDefault().GetCustomAttributes(typeof(DisplayAttribute), true)[0];
-        }
-        catch (Exception ex)
-        {
-
-            return $"{value} Enum 取 Display Name 錯誤";
+            if (p.GetValue(null)?.ToString() == value.ToString())
+            {
+                if (++matchCount > 1) return $"{value} Enum 值重複";
+                matchedProperty = p;
+            }
         }
 
-        var description = (DisplayAttribute)att;
-        var result = description.Name;
-        return result;
+        if (matchCount == 0) return $"{value} Enum 值不存在";
+        var attribute = (matchedProperty?.GetCustomAttributes(typeof(DisplayAttribute), true))?.FirstOrDefault() as DisplayAttribute;
+        return attribute?.Description ?? $"{value} Enum 取 Display Description 錯誤";
+    }
+
+    /// <summary>
+    /// 取得 ValueEnum 顯示屬性中文 DisplayAttribute Name 值
+    /// </summary>
+    /// <returns></returns>
+    internal static string GetName(object value, PropertyInfo[] pros)
+    {
+        int matchCount = 0;
+        PropertyInfo matchedProperty = null;
+        foreach (var p in pros)
+        {
+            if (p.GetValue(null)?.ToString() == value.ToString())
+            {
+                if (++matchCount > 1) return $"{value} Enum 值重複";
+                matchedProperty = p;
+            }
+        }
+
+        if (matchCount == 0) return $"{value} Enum 值不存在";
+        var attribute = (matchedProperty?.GetCustomAttributes(typeof(DisplayAttribute), true))?.FirstOrDefault() as DisplayAttribute;
+        return attribute?.Name ?? $"{value} Enum 取 Display Name 錯誤";
     }
 }
 
 /// <summary>
-/// Production TextEnum 物件基底
+/// Production ValueEnum 物件基底
 /// 不可直接繼承使用
 /// </summary>
-/// <typeparam name="T">Production 的 TextEnum</typeparam>
-public class BaseEnum<T>
+/// <typeparam name="T">Production 的 ValueEnum</typeparam>
+public class ValueEnumBase<T>
 {
     private static PropertyInfo[] pros
     {
         get
         {
             var t1Pros = typeof(T).GetProperties(BindingFlags.Public | BindingFlags.Static);
-            if (typeof(T).BaseType is not BaseEnum<T>)
+            if (typeof(T).BaseType is not ValueEnumBase<T>)
             {
                 var t2Pros = typeof(T).BaseType.GetProperties(BindingFlags.Public | BindingFlags.Static);
                 var Pros = new PropertyInfo[t1Pros.Length + t2Pros.Length];
@@ -250,24 +266,24 @@ public class BaseEnum<T>
         }
     }
 
-    public static List<SelectListItem> GetTextEnumSelectListItems(Type type, Func<string, bool> funcValue = null)
+    public static List<SelectListItem> GetValueEnumSelectListItems(Type type, Func<string, bool> funcValue = null)
     {
-        return TextEnumBase.GetTextEnumSelectListItems(type, funcValue);
+        return ValueEnumBase.GetValueEnumSelectListItems(type, funcValue);
     }
 
     /// <summary>
-    /// 取得TextEnum所有內容 
+    /// 取得ValueEnum所有內容 
     /// key Enum 值 int
     /// value Enum 描述 string 中文 (DisplayAttribute Name 值)
     /// </summary>
     /// <returns></returns>
     public static Dictionary<int, string> GetInfos()
     {
-        return TextEnumBase.GetInfos(pros);
+        return ValueEnumBase.GetInfos(pros);
     }
 
     /// <summary>
-    /// 取得TextEnum所有內容 
+    /// 取得ValueEnum所有內容 
     /// key Enum 值 string
     /// value Enum 描述 string 中文 (DisplayAttribute Name 值)
     /// </summary>
@@ -275,26 +291,26 @@ public class BaseEnum<T>
     /// <returns></returns>
     public static Dictionary<string, string> GetInfos(bool isEnumString)
     {
-        return TextEnumBase.GetInfos(isEnumString, pros);
+        return ValueEnumBase.GetInfos(isEnumString, pros);
     }
 
     /// <summary>
-    /// 取得TextEnum所有值
+    /// 取得ValueEnum所有值
     /// </summary>
     /// <returns></returns>
     public static List<int> GetValues()
     {
-        return TextEnumBase.GetValues(pros);
+        return ValueEnumBase.GetValues(pros);
     }
 
     /// <summary>
-    /// 取得TextEnum所有值
+    /// 取得ValueEnum所有值
     /// </summary>
     /// <param name="isEnumString">是否 Enum 宣告值型別 string </param>
     /// <returns></returns>
     public static List<string> GetValues(bool isEnumString)
     {
-        return TextEnumBase.GetValues(isEnumString, pros);
+        return ValueEnumBase.GetValues(isEnumString, pros);
     }
 
     /// <summary>
@@ -303,27 +319,39 @@ public class BaseEnum<T>
     /// <returns></returns>
     public static bool IsValueExist(object value)
     {
-        return TextEnumBase.IsValueExist(value, pros);
+        return ValueEnumBase.IsValueExist(value, pros);
     }
 
     /// <summary>
-    /// 取得 TextEnum 屬性名稱 英文
+    /// 取得 ValueEnum 屬性名稱 英文
     /// </summary>
     /// <returns></returns>
-    public static string GetName(object value)
+    public static string GetPorpertyName(object value)
     {
-        return TextEnumBase.GetName(value, pros);
+        return ValueEnumBase.GetPorpertyName(value, pros);
     }
 
     /// <summary>
-    /// 取得 TextEnum 屬性顯示 中文
-    /// DisplayAttribute Name 值
+    /// 取得 ValueEnum 屬性顯示 中文
+    /// DisplayAttribute Description 值
     /// </summary>
     /// <returns></returns>
     public static string GetDescription(object value)
     {
         if (value == null)
             return "";
-        return TextEnumBase.GetDescription(value, pros);
+        return ValueEnumBase.GetDescription(value, pros);
+    }
+
+    /// <summary>
+    /// 取得 ValueEnum 屬性顯示 中文
+    /// DisplayAttribute Name 值
+    /// </summary>
+    /// <returns></returns>
+    public static string GetName(object value)
+    {
+        if (value == null)
+            return "";
+        return ValueEnumBase.GetName(value, pros);
     }
 }
