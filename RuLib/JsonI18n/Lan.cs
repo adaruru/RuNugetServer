@@ -5,6 +5,9 @@ using Newtonsoft.Json;
 
 public class Lan
 {
+    /// <summary>
+    /// 資源檔必須設為 Content 內容，且建置或發佈設定 CopyToOutputDirectory Always/PreserveNewest 永遠複製/有更新時才複製
+    /// </summary>
     public static LanguageObj currentLan = new LanguageObj();
     private static string _currentLanguage = "zh_TW";
     public static void LoadLanguage(string? languageCode = null, string? assetPath = null)
