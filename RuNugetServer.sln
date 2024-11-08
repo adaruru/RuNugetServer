@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebCoreTest", "WebCoreTest\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebTest", "WebTest\WebTest.csproj", "{91907D16-6E23-4DE5-91FA-C786295E76E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RuLib", "RuLib\RuLib.csproj", "{2AAA4A48-8E22-4884-BFE3-D9E255A52E01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RuLib", "RuLib\RuLib.csproj", "{2AAA4A48-8E22-4884-BFE3-D9E255A52E01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "UnitTest\UnitTest.csproj", "{4F344903-358C-4431-A357-CF01D0A55EAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest", "UnitTest\UnitTest.csproj", "{4F344903-358C-4431-A357-CF01D0A55EAA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
