@@ -2,10 +2,12 @@
 using System.Reflection;
 using System.Web.WebPages.Html;
 
-namespace Common.TextEnum.BaseTextEnum;
+namespace RuLib.Base;
 
 /// <summary>
-/// TextEnumBase<T>基底 不可直接繼承使用
+/// TextEnumBase<T>
+/// 為打包物件 static string 或 int 使其用法像 Enum，但可以繼承擴充、且可以 asign string 
+/// 基底不可直接繼承使用
 /// </summary>
 public class TextEnumBase
 {
