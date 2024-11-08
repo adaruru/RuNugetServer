@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using RuLib.Services.ValueEnum;
+using RuLib.ValueEnum;
 
 namespace UnitTest.RuLib.TextEnumTest;
 

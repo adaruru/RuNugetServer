@@ -1,4 +1,4 @@
-﻿using UnitTest.RuLib.TextEnumTest.Wrapper;
+﻿using RuLib.ValueEnum;
 using BatchApp = UnitTest.RuLib.TextEnumTest.HncbFakeBatchAppEnum;
 
 namespace UnitTest.RuLib.TextEnumTest

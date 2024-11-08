@@ -1,7 +1,7 @@
 ﻿
 using System.Web.WebPages.Html;
 
-namespace RuLib.Services.ValueEnum;
+namespace RuLib.ValueEnum;
 
 public class ValueEnumSelectList
 {

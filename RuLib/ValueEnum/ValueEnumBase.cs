@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Web.WebPages.Html;
 
-namespace RuLib.Services.ValueEnum;
+namespace RuLib.ValueEnum;
 
 /// <summary>
 /// ValueEnumBase<T>

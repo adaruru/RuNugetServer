@@ -1,7 +1,7 @@
-﻿using RuLib.Services.ValueEnum;
+﻿using RuLib.ValueEnum;
 using System.Reflection;
 
-namespace UnitTest.RuLib.TextEnumTest.Wrapper
+namespace RuLib.ValueEnum
 {
     /// <summary>
     /// Wrapper 給自訂義enum class 可以使用GetXXX 方法

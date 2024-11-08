@@ -1,4 +1,4 @@
-﻿using RuLib.Services.ValueEnum;
+﻿using RuLib.ValueEnum;
 using System.Web.WebPages.Html;
 
 namespace UnitTest.RuLib.TextEnumTest
