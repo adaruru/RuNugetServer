@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
 
 namespace RuLib.SqlConn;
@@ -10,9 +11,16 @@ public class PostgreSqlConn : IConn
 
     private readonly NpgsqlConnection _connection;
 
-    public PostgreSqlConn(string connectionString)
+    public PostgreSqlConn(ConnOptions option)
     {
-        _connection = new NpgsqlConnection(connectionString);
+        _connection = new NpgsqlConnection(option.ConnectionString);
+    }
+
+    public DbContext GetDbContext()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder();
+        optionsBuilder.UseNpgsql(_connection.ConnectionString);
+        return new DbContext(optionsBuilder.Options);
     }
 
     public bool TestConnection(out string message)

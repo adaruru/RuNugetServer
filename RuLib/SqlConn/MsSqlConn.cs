@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Data;
 using System.Data.SqlClient;
 namespace RuLib.SqlConn;
 
@@ -8,9 +9,15 @@ public class MsSqlConn : IConn
     public DbType DbType => DbType.MsSql;
 
     private readonly SqlConnection _connection;
-    public MsSqlConn(string connectionString)
+    public MsSqlConn(ConnOptions option)
     {
-        _connection = new SqlConnection(connectionString);
+        _connection = new SqlConnection(option.ConnectionString);
+    }
+    public DbContext GetDbContext()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder();
+        optionsBuilder.UseSqlServer(_connection.ConnectionString);
+        return new DbContext(optionsBuilder.Options);
     }
 
     public bool TestConnection(out string message)

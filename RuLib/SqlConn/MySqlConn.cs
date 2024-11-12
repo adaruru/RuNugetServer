@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
 
 namespace RuLib.SqlConn;
@@ -10,9 +11,16 @@ public class MySqlConn : IConn
 
     private readonly MySqlConnection _connection;
 
-    public MySqlConn(string connectionString)
+    public MySqlConn(ConnOptions option)
     {
-        _connection = new MySqlConnection(connectionString);
+        _connection = new MySqlConnection(option.ConnectionString);
+    }
+
+    public DbContext GetDbContext()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder();
+        optionsBuilder.UseMySql(_connection.ConnectionString, new MySqlServerVersion(new Version(8, 0, 21))); // 根据 MySQL 版本调整
+        return new DbContext(optionsBuilder.Options);
     }
 
     public bool TestConnection(out string message)

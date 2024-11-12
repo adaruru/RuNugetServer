@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Microsoft.EntityFrameworkCore;
 using Npgsql;
 using Oracle.ManagedDataAccess.Client;
 
@@ -11,9 +12,15 @@ public class OracleSqlConn : IConn
 
     private readonly OracleConnection _connection;
 
-    public OracleSqlConn(string connectionString)
+    public OracleSqlConn(ConnOptions option)
     {
-        _connection = new OracleConnection(connectionString);
+        _connection = new OracleConnection(option.ConnectionString);
+    }
+    public DbContext GetDbContext()
+    {
+        var optionsBuilder = new DbContextOptionsBuilder();
+        optionsBuilder.UseOracle(_connection.ConnectionString);
+        return new DbContext(optionsBuilder.Options);
     }
 
     public bool TestConnection(out string message)
