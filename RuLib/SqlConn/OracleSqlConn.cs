@@ -1,6 +1,4 @@
-﻿using System.Data;
-using Microsoft.EntityFrameworkCore;
-using Npgsql;
+﻿using Microsoft.EntityFrameworkCore;
 using Oracle.ManagedDataAccess.Client;
 
 namespace RuLib.SqlConn;

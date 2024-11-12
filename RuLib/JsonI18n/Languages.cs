@@ -1,8 +1,6 @@
 ﻿// RuLib 1.0.0
 // Copyright (C) 2024, Adaruru
 
-using Newtonsoft.Json;
-
 namespace RuLib.JsonI18n;
 
 public class Languages

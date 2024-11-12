@@ -1,8 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace RuLib.SqlConn
 {
@@ -24,7 +21,6 @@ namespace RuLib.SqlConn
                 DbType.PostgreSql => new PostgreSqlConn(options),
                 _ => throw new ArgumentException("Unsupported database type")
             };
-
             return connection.GetDbContext();
         }
 
@@ -33,9 +29,9 @@ namespace RuLib.SqlConn
             return context.Model.FindEntityType(entityType);
         }
 
-        public static PropertInfo GetPropertyInfo(IModel Model, Type entityType)
+        public static PropertyInfo GetPropertyInfo(IModel Model, Type entityType)
         {
-            PropertInfo result = new PropertInfo();
+            PropertyInfo result = new PropertyInfo();
             result.PKs.AddRange(Model.FindEntityType(entityType).FindPrimaryKey().Properties.Select(x => x.Name));
             return result;
         }
@@ -54,9 +50,9 @@ namespace RuLib.SqlConn
         }
 
 
-        public class PropertInfo
+        public class PropertyInfo
         {
-            public PropertInfo()
+            public PropertyInfo()
             {
                 PKs = new List<string>();
             }

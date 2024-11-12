@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Data;
 using System.Data.SqlClient;
+
 namespace RuLib.SqlConn;
 
 public class MsSqlConn : IConn
