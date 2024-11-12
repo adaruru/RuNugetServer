@@ -3,6 +3,8 @@
 
 using Newtonsoft.Json;
 
+namespace RuLib.JsonI18n;
+
 public class Lan
 {
     /// <summary>

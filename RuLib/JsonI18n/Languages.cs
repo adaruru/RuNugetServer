@@ -3,6 +3,8 @@
 
 using Newtonsoft.Json;
 
+namespace RuLib.JsonI18n;
+
 public class Languages
 {
     private static string _currentLanguage = "zh_TW";

@@ -8,7 +8,7 @@
 
 ## RuLib
 
-### TextEnumBase
+### ValueEnumBase
 
 模擬 Enum 寫法包裝成 Class 物件，可以儲存 string ，做到處理類似 Create ct 、 Update upd 、 Delete del 資料得效果，且包裝物件，令其可以透由繼承，追加擴充屬性。
 
@@ -20,10 +20,10 @@
 //SystemEnum 
 public Enum.ApprovalFunction ApprovalFunction { get; set; } //sql 對應的是 int
 
-//TextEnum
+//ValueEnum
 //重新命名、重設資料類別 int (Model property 、各function區域變數)
-//Enum 需改名與 TextEnum，方便未來維護
-public string ApprovalTypeTextEnum { get; set; } 
+//Enum 需改名與 ValueEnum，方便未來維護
+public string ApprovalTypeValueEnum { get; set; } 
 ```
 
 #### Use example
@@ -31,10 +31,10 @@ public string ApprovalTypeTextEnum { get; set; }
 ```csharp
 Enum.LaunchProgram app //=0;
 
-//TextEnum 目前僅支援 string 或 int
-int BatchAppTextEnum
+//ValueEnum 目前僅支援 string 或 int
+int BatchAppValueEnum
 //or
-string BatchAppTextEnum 
+string BatchAppValueEnum 
 ```
 
 #### 個別擴充繼承(維護在各自專案)
@@ -45,9 +45,9 @@ string BatchAppTextEnum
 //SystemEnum 
 //Enum 無法擴充
 
-//TextEnum
-//設計 Base TextEnum
-public class BatchAppTextEnum<T> : BaseEnum<T>
+//ValueEnum
+//設計 Base ValueEnum
+public class BatchAppValueEnum<T> : BaseEnum<T>
 {
     /// <summary>
     /// 使用者資料匯入批次作業
@@ -62,26 +62,26 @@ public class BatchAppTextEnum<T> : BaseEnum<T>
     public static string DeptDataImport => "902";
 }
 
-//有擴充需求，繼承 Base TextEnum 並傳入自身泛型
-public class XXXBatchAppTextEnum : BatchAppTextEnum<XXXBatchAppTextEnum>
+//有擴充需求，繼承 Base ValueEnum 並傳入自身泛型
+public class XXXBatchAppValueEnum : BatchAppValueEnum<XXXBatchAppValueEnum>
 {
     [Display(Name = "費用匯入作業")]
     public static string PaymentDetailImport => "DX403";
 }
 
-var app = XXXBatchAppTextEnum.UserDataImport;//app = "901"
-var app = XXXBatchAppTextEnum.PaymentDetailImport;//app = "DX403"
+var app = XXXBatchAppValueEnum.UserDataImport;//app = "901"
+var app = XXXBatchAppValueEnum.PaymentDetailImport;//app = "DX403"
 
 //無擴充需求 也建議寫一組，不可直接使用基底 Base，另物件在使用上更好維護
-public class ApprovalFunctionTextEnum<T> : BaseEnum<T>
+public class ApprovalFunctionValueEnum<T> : BaseEnum<T>
 {
     public static string RejectByClient => "RejectR011";
     public static string RejectByAuthority => "RejectR012";
 }
-public class XXXApprovalFunctionTextEnum : ApprovalFunctionTextEnum<XXXApprovalFunctionTextEnum>
+public class XXXApprovalFunctionValueEnum : ApprovalFunctionValueEnum<XXXApprovalFunctionValueEnum>
 {}
 
-var r = XXXApprovalFunctionTextEnum.RejectByClient;//r = "RejectR011"
+var r = XXXApprovalFunctionValueEnum.RejectByClient;//r = "RejectR011"
 ```
 
 #### 判斷、設值修改
@@ -91,22 +91,22 @@ var r = XXXApprovalFunctionTextEnum.RejectByClient;//r = "RejectR011"
 if (x.ApprovalFunction == SystemEnum.ApprovalStatus.BranchApproveRole){}
 public override SystemEnum.ApprovalFunction ApprovalFunction => SystemEnum.ApprovalFunction.BranchApproveRole;
 
-//TextEnum
+//ValueEnum
 if (x.ApprovalFunction == ApprovalFunctionEnum.BranchApproveRole){}
 public override int ApprovalFunction => ApprovalFunctionEnum.BranchApproveRole;
 ```
 
 #### Enum function 
 
-已此 BatchAppTextEnum 結構為例
+已此 BatchAppValueEnum 結構為例
 
 #### GetEnumName() 取得設定描述 
 
 ```csharp
 //Enum
 SystemEnum.BatchAppEnum.GetEnumName();
-//TextEnum
-BatchAppTextEnum.GetDescription("901"); // =使用者資料匯入批次作業
+//ValueEnum
+BatchAppValueEnum.GetDescription("901"); // =使用者資料匯入批次作業
 ```
 
 #### GetValueString() 取得設定描述名稱
@@ -114,7 +114,7 @@ BatchAppTextEnum.GetDescription("901"); // =使用者資料匯入批次作業
 ```csharp
 //Enum
 SystemEnum.BatchAppEnum.GetValueString();
-//TextEnum
+//ValueEnum
 BatchAppEnum.GetName("901"); // UserDataImport
 ```
 
@@ -130,7 +130,7 @@ foreach (var p in Enum.GetValues(typeof(SystemEnum.LaunchProgram)))
      System.Console.WriteLine($"{(int)program}.{program.GetEnumName()}");
   }
 
-//TextEnum
+//ValueEnum
 foreach (var p in BatchAppEnum.GetInfos(isEnumString: true))
 {
     System.Console.WriteLine($"{p.Key}.{p.Value}"); //{{"901","使用者"},{"902","部門"}}
@@ -145,9 +145,9 @@ BatchAppEnum.GetValues(); //{"901", "902", "903", "904"}
 //Enum
 SearchData.Add(new SelectListSearchField("ApprovalStatus", DisplayNameFor<ApprovalDataIndexModel>(r => r.ApprovalStatusEnum), selectListService.GetSelectListItems(typeof(SystemEnum.ApprovalStatus)), ""));
 
-//取單一 TextEnum
-SearchData.Add(new SelectListSearchField("ApprovalStatus", DisplayNameFor<ApprovalDataIndexModel>(r => r.ApprovalStatusEnum), selectListService.GetTextEnumSelectListItems(typeof(ApprovalStatusEnum)), ""));
+//取單一 ValueEnum
+SearchData.Add(new SelectListSearchField("ApprovalStatus", DisplayNameFor<ApprovalDataIndexModel>(r => r.ApprovalStatusEnum), selectListService.GetValueEnumSelectListItems(typeof(ApprovalStatusEnum)), ""));
 
-//取擴充 TextEnum
-SearchData.Add(new SelectListSearchField("ApprovalStatus", DisplayNameFor<ApprovalDataIndexModel>(r => r.ApprovalStatusEnum), selectListService.GetTextEnumSelectListItems(typeof(XXXBatchAppTextEnum), typeof(BatchAppTextEnum)), ""));
+//取擴充 ValueEnum
+SearchData.Add(new SelectListSearchField("ApprovalStatus", DisplayNameFor<ApprovalDataIndexModel>(r => r.ApprovalStatusEnum), selectListService.GetValueEnumSelectListItems(typeof(XXXBatchAppValueEnum), typeof(BatchAppValueEnum)), ""));
 ```

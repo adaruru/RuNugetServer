@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace UnitTest.RuLib.TextEnumTest
 {
     [TestClass()]
-    public class ValueEnumTest
+    public class ConnTest
     {
         [TestInitialize]
         public void Init()

@@ -1,4 +1,7 @@
-﻿namespace UnitTest.RuLib.TextEnumTest
+﻿using RuLib.JsonI18n;
+
+
+namespace UnitTest.RuLib.TextEnumTest
 {
     [TestClass()]
     public class LanTest
