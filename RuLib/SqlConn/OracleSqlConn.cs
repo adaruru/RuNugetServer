@@ -2,7 +2,7 @@
 using Npgsql;
 using Oracle.ManagedDataAccess.Client;
 
-namespace RuLib.DbConnect;
+namespace RuLib.SqlConn;
 
 public class OracleSqlConn : IConn
 {

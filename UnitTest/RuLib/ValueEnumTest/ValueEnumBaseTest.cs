@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
-namespace UnitTest.RuLib.TextEnumTest
+namespace UnitTest.RuLib.ValueEnumTest
 {
     [TestClass()]
     public class ValueEnumBaseTest

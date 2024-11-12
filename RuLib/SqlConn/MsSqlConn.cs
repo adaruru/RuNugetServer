@@ -1,12 +1,11 @@
-﻿
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-namespace RuLib.DbConnect;
+namespace RuLib.SqlConn;
 
 public class MsSqlConn : IConn
 {
     public bool IsConnected => _connection.State == ConnectionState.Open;
-    public DbType DbType  => DbType.MsSql;
+    public DbType DbType => DbType.MsSql;
 
     private readonly SqlConnection _connection;
     public MsSqlConn(string connectionString)

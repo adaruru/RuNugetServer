@@ -1,7 +1,7 @@
 ﻿using RuLib.ValueEnum;
 using System.Web.WebPages.Html;
 
-namespace UnitTest.RuLib.TextEnumTest
+namespace UnitTest.RuLib.ValueEnumTest
 {
     [TestClass()]
     public class ValueEnumSelectListTest
@@ -15,7 +15,7 @@ namespace UnitTest.RuLib.TextEnumTest
         }
 
         [TestMethod()]
-        public void Production_GetITSEnumSelectListItems()
+        public void Production_GetValueEnumSelectListItems()
         {
             //arrange
             var Expected = new List<SelectListItem>() {
@@ -37,7 +37,7 @@ namespace UnitTest.RuLib.TextEnumTest
         }
 
         [TestMethod()]
-        public void HNCB_GetITSEnumSelectListItems()
+        public void HNCB_GetValueEnumSelectListItems()
         {
             //arrange
             var Expected = new List<SelectListItem>() {

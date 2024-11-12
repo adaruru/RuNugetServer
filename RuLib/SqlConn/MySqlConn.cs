@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using MySql.Data.MySqlClient;
 
-namespace RuLib.DbConnect;
+namespace RuLib.SqlConn;
 
 public class MySqlConn : IConn
 {

@@ -1,7 +1,7 @@
 ﻿using RuLib.ValueEnum;
-using BatchApp = UnitTest.RuLib.TextEnumTest.HncbFakeBatchAppEnum;
+using BatchApp = UnitTest.RuLib.ValueEnumTest.HncbFakeBatchAppEnum;
 
-namespace UnitTest.RuLib.TextEnumTest
+namespace UnitTest.RuLib.ValueEnumTest
 {
     [TestClass()]
     public class ValueEnumWrapperTest

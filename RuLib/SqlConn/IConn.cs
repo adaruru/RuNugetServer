@@ -1,6 +1,6 @@
 ﻿using System.Data;
 
-namespace RuLib.DbConnect;
+namespace RuLib.SqlConn;
 
 public interface IConn : IDisposable
 {

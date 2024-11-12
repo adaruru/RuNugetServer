@@ -1,7 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using UnitTest.RuLib.ValueEnumTest;
 
-namespace UnitTest.RuLib.TextEnumTest
+namespace UnitTest.RuLib.SqlConnTest
 {
     [TestClass()]
     public class ConnTest

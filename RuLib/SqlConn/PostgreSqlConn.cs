@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Npgsql;
 
-namespace RuLib.DbConnect;
+namespace RuLib.SqlConn;
 
 public class PostgreSqlConn : IConn
 {

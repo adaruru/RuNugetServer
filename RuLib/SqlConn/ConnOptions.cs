@@ -1,5 +1,4 @@
-﻿
-namespace RuLib.DbConnect;
+﻿namespace RuLib.SqlConn;
 
 public class ConnOptions
 {

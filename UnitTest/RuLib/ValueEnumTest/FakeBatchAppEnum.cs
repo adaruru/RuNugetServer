@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using RuLib.ValueEnum;
 
-namespace UnitTest.RuLib.TextEnumTest;
+namespace UnitTest.RuLib.ValueEnumTest;
 
 public class ParentBatchAppEnum<T> : ValueEnumBase<T>
 {
