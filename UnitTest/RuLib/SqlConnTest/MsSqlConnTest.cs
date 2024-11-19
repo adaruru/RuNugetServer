@@ -15,7 +15,8 @@ public class MsSqlConnTest
     {
         var options = new ConnOptions()
         {
-            ConnectionString = "Data Source=192.168.1.63;Initial Catalog=Northwind;user id=sa;password=sa",
+            //ConnectionString = "Data Source=192.168.1.63;Initial Catalog=Northwind;user id=sa;password=sa",
+            ConnectionString = "Data Source=IPC16;Initial Catalog=Northwind;user id=sa;password=html5!its",
             DbType = ConnType.MsSql
         };
         Conn = new MsSqlConn(options);
@@ -73,8 +74,8 @@ public class MsSqlConnTest
         //act
         var sql = @"
 -- 定義要 Upsert 的目標資料
-DECLARE @CustomerID NVARCHAR(5) = 'ALFKI'; -- 要查找的主鍵
-DECLARE @CompanyName NVARCHAR(40) = 'Updated Company Name';
+DECLARE @CustomerID NVARCHAR(5) = 'ALFKI2'; -- 要查找的主鍵
+DECLARE @CompanyName NVARCHAR(40) = 'ACD';
 DECLARE @ContactName NVARCHAR(30) = 'Updated Contact';
 DECLARE @ContactTitle NVARCHAR(30) = 'Updated Title';
 DECLARE @Address NVARCHAR(60) = 'Updated Address';
@@ -119,7 +120,7 @@ END;
         var act = Conn.ExecuteNonQuery(sql);
         //assert
         Assert.AreEqual(expected, act);
-        Assert.AreEqual("Record updated successfully.\r\n", Conn.PrintMessage);
+        Assert.AreEqual("Record inserted successfully.\r\n", Conn.PrintMessage);
     }
 
 }
