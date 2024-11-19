@@ -3,13 +3,13 @@
 public class ConnOptions
 {
     public string ConnectionString { get; set; }
-    public DbType DbType { get; set; }
+    public ConnType DbType { get; set; }
 }
 
 /// <summary>
 /// Specifies the type of database to connect to.
 /// </summary>
-public enum DbType
+public enum ConnType
 {
     /// <summary>
     /// Microsoft SQL Server database.

@@ -6,7 +6,7 @@ namespace RuLib.SqlConn;
 public class PostgreSqlConn : IConn
 {
     public bool IsConnected => _connection.State == ConnectionState.Open;
-    public DbType DbType => DbType.PostgreSql;
+    public ConnType DbType => ConnType.PostgreSql;
 
     private readonly NpgsqlConnection _connection;
 
@@ -22,7 +22,7 @@ public class PostgreSqlConn : IConn
         return new DbContext(optionsBuilder.Options);
     }
 
-    public bool TestConnection(out string message)
+    public bool OpenConn(out string message)
     {
         try
         {

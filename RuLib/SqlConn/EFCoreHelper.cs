@@ -15,10 +15,10 @@ namespace RuLib.SqlConn
         {
             IConn connection = options.DbType switch
             {
-                DbType.MsSql => new MsSqlConn(options),
-                DbType.MySql => new MySqlConn(options),
-                DbType.OracleSql => new OracleSqlConn(options),
-                DbType.PostgreSql => new PostgreSqlConn(options),
+                ConnType.MsSql => new MsSqlConn(options),
+                ConnType.MySql => new MySqlConn(options),
+                ConnType.OracleSql => new OracleSqlConn(options),
+                ConnType.PostgreSql => new PostgreSqlConn(options),
                 _ => throw new ArgumentException("Unsupported database type")
             };
             return connection.GetDbContext();

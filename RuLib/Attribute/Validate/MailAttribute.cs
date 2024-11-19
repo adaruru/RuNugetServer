@@ -29,7 +29,7 @@ public class MailAttribute : ValidationAttribute
 
         if (!AllowUppercase)
         {
-            EmailRegex =
+            EmailRegex = "";
         }
 
         if (!AllowUppercase)
@@ -81,7 +81,6 @@ public enum EmailValidationOptions
 }
 
 public class  Test{
-    [Mail(Options=)]
     public string Mail { get; set; }
 
 }

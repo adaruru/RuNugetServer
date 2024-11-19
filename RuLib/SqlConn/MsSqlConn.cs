@@ -6,7 +6,7 @@ namespace RuLib.SqlConn;
 public class MsSqlConn : IConn
 {
     public bool IsConnected => _connection.State == ConnectionState.Open;
-    public DbType DbType => DbType.MsSql;
+    public ConnType DbType => ConnType.MsSql;
 
     private readonly SqlConnection _connection;
     public MsSqlConn(ConnOptions option)
@@ -20,7 +20,7 @@ public class MsSqlConn : IConn
         return new DbContext(optionsBuilder.Options);
     }
 
-    public bool TestConnection(out string message)
+    public bool OpenConn(out string message)
     {
         try
         {

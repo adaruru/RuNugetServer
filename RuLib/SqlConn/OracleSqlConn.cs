@@ -6,7 +6,7 @@ namespace RuLib.SqlConn;
 public class OracleSqlConn : IConn
 {
     public bool IsConnected => _connection.State == ConnectionState.Open;
-    public DbType DbType => DbType.OracleSql;
+    public ConnType DbType => ConnType.OracleSql;
 
     private readonly OracleConnection _connection;
 
@@ -21,7 +21,7 @@ public class OracleSqlConn : IConn
         return new DbContext(optionsBuilder.Options);
     }
 
-    public bool TestConnection(out string message)
+    public bool OpenConn(out string message)
     {
         try
         {
