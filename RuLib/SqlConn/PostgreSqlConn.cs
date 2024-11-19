@@ -3,7 +3,7 @@ using Npgsql;
 
 namespace RuLib.SqlConn;
 
-public class PostgreSqlConn : IConn
+public class PostgreSqlConn : DecorConn, IConn
 {
     public bool IsConnected => _connection.State == ConnectionState.Open;
     public ConnType DbType => ConnType.PostgreSql;

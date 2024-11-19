@@ -11,23 +11,24 @@ public class ConnOptions
 /// </summary>
 public enum ConnType
 {
+    None = 0,
     /// <summary>
     /// Microsoft SQL Server database.
     /// </summary>
-    MsSql = 0,
+    MsSql = 1,
 
     /// <summary>
     /// MySQL database, commonly used for web applications and open-source projects.
     /// </summary>
-    MySql = 1,
+    MySql = 2,
 
     /// <summary>
     /// PostgreSQL database, known for its extensibility and SQL compliance.
     /// </summary>
-    PostgreSql = 2,
+    PostgreSql = 3,
 
     /// <summary>
     /// Oracle database, widely used in enterprise environments.
     /// </summary>
-    OracleSql = 3
+    OracleSql = 4
 }

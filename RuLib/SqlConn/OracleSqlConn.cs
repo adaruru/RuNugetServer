@@ -3,7 +3,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace RuLib.SqlConn;
 
-public class OracleSqlConn : IConn
+public class OracleSqlConn : DecorConn, IConn
 {
     public bool IsConnected => _connection.State == ConnectionState.Open;
     public ConnType DbType => ConnType.OracleSql;

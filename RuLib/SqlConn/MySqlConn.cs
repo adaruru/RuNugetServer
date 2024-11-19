@@ -3,7 +3,7 @@ using MySql.Data.MySqlClient;
 
 namespace RuLib.SqlConn;
 
-public class MySqlConn : IConn
+public class MySqlConn : DecorConn, IConn
 {
     public bool IsConnected => _connection.State == ConnectionState.Open;
     public ConnType DbType => ConnType.MsSql;
