@@ -27,7 +27,7 @@ internal static class Program
 
         services.AddCustomConnection(new ConnOptions
         {
-            ConnectionString = "Data Source=IPC16;Initial Catalog=Northwind;user id=sa;password=sa",
+            ConnectionString = "Data Source=192.168.1.63;Initial Catalog=AchData;user id=sa;password=sa",
             DbType = ConnType.MsSql
         });
 
